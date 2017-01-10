@@ -10,8 +10,7 @@
   "accounts": {
     "domain": "statsocial.com",
     "credentials": [
-      "username",
-      "password"
+      "apiKey"
     ]
   },
   "blocks": [
