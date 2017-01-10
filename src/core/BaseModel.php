@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Core;
 if ( ! defined( 'RAPID_IN' ) ) exit( 'No direct script access allowed' );
 
 /**
@@ -9,6 +9,12 @@ if ( ! defined( 'RAPID_IN' ) ) exit( 'No direct script access allowed' );
 class BaseModel
 {
     public function __construct() {}
+
+    public function showMetadata()
+    {
+        //include_once APP_PATH . 'src/metadata/metadata.json';
+        exit();
+    }
 
     protected function normalizeJson( $jsonObject )
     {
