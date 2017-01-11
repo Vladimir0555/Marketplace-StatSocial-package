@@ -1,0 +1,28 @@
+<?php
+
+namespace Model;
+use Core\BaseModel;
+if ( ! defined( 'RAPID_IN' ) ) exit( 'No direct script access allowed' );
+
+/**
+ * Get Reports Model
+ */
+class MApplication extends BaseModel
+{
+    public function getStatus()
+    {
+        // Validate Required and JSON fields
+        $response = $this->validateParam(['apiKey']);
+        if($response){
+            return $response;
+        }
+        $sendingParam = $this->prepareParam([
+            'apiKey' => 'key'
+        ]);
+
+        // Make request
+        $result = $this->httpRequest('http://api.statsocial.com:80/api/applications/status/', $sendingParam, 'GET');
+
+        return json_encode($result);
+    }
+}

@@ -1,10 +1,12 @@
 <?php
 
 require '../vendor/autoload.php';
-//header('Content-type: application/json');
+header('Content-type: application/json');
 
 use Core\BaseModel;
-use Model\MGetReports;
+use Model\MReportGet;
+use Model\MReportCreate;
+use Model\MApplication;
 
 error_reporting(E_ALL);
 if(!defined('ENT_HTML5')){
@@ -29,13 +31,49 @@ $klein->respond('GET', INDEX_PATH, function(){
     $baseModel = new BaseModel();
     $baseModel->showMetadata();
 });
-// /api/StatSocial/getReports
+// MReportGet
+// api/StatSocial/getReports
 $klein->respond('POST', INDEX_PATH . 'api/StatSocial/getReports', function(){
-    $report = new MGetReports(
-        ['apiKey', 'reportHash', 'baseline', 'reportDate', 'sample'],
-        'http://api.statsocial.com:80/api/'
-    );
-    echo $report->run();
+    $report = new MReportGet(['apiKey', 'reportHash', 'baseline', 'reportDate', 'sample']);
+    echo $report->reports();
+    exit(200);
+});
+// api/StatSocial/getSpecificReportDates
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/getSpecificReportDates', function(){
+    $report = new MReportGet(['apiKey', 'reportHash']);
+    echo $report->specificDates();
+    exit(200);
+});
+// api/StatSocial/getReportStatus
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/getReportStatus', function(){
+    $report = new MReportGet(['apiKey', 'reportHash']);
+    echo $report->status();
+    exit(200);
+});
+// api/StatSocial/createTwitterFollowerReport
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/createTwitterFollowerReport', function(){
+    $report = new MReportCreate(['apiKey', 'twitterId', 'twitterHandle', 'filter']);
+    echo $report->twitterFollower();
+    exit(200);
+});
+// api/StatSocial/createCustomReport
+/*
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/createCustomReport', function(){
+    $report = new MReportCreate(['apiKey', 'reportName']);
+    echo $report->custom();
+    exit(200);
+});
+*/
+// api/StatSocial/createTweetReport
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/createTweetReport', function(){
+    $report = new MReportCreate(['apiKey', 'reportName', 'startDate', 'endDate', 'terms', 'filter']);
+    echo $report->tweet();
+    exit(200);
+});
+// api/StatSocial/getApplicationStatus
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/getApplicationStatus', function(){
+    $report = new MApplication(['apiKey']);
+    echo $report->getStatus();
     exit(200);
 });
 
