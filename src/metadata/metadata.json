@@ -157,8 +157,8 @@
       ]
     },
     {
-      "name": "createCustomReport",
-      "description": "Used to create a custom report.",
+      "name": "generateCustomReport",
+      "description": "Used to create a custom report. This report treats the list of ids or handles as the audience (not their followers as in the twitter report). To create follower or tweet reports other methods must be used.",
       "args": [
         {
           "name": "apiKey",
@@ -171,6 +171,74 @@
           "type": "String",
           "info": "Name of report.",
           "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "insertCustomReport",
+      "description": "Inserting twitter ids or handles into a custom report. This is used for custom reports only.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key.",
+          "required": true
+        },
+        {
+          "name": "uploadHash",
+          "type": "String",
+          "info": "Upload hash to be used for inserting handles.",
+          "required": true
+        },
+        {
+          "name": "ids",
+          "type": "String",
+          "info": "List of twitter ids, separated by commas, to be inserted into report. Ids must be enclosed with brackets ie. [177490485] or [177490485,23423434].",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createCustomReport",
+      "description": "Used to create a custom report. This report treats the list of ids or handles as the audience (not their followers as in the twitter report). To create follower or tweet reports other methods must be used.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key.",
+          "required": true
+        },
+        {
+          "name": "uploadHash",
+          "type": "String",
+          "info": "Name of report.",
+          "required": true
+        },
+        {
+          "name": "filter",
+          "type": "JSON",
+          "info": "Filtering options to be used when creating a filtered report. The options must be in JSON form, example: {\"gender\":[\"male\"],\"ages\":[\"18-24\"],\"countries\":[\"usa\"]}.",
+          "required": false
         }
       ],
       "callbacks": [

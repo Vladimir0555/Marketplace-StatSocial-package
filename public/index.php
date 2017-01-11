@@ -24,7 +24,7 @@ if( strlen( trim( $inPath ) ) > 0 ){
 define( 'APP_PATH', __DIR__ );
 define( 'HTTP_HOST', $_SERVER['HTTP_HOST'] );
 
-// Init the Block
+// Init Blocks path
 $klein = new \Klein\Klein();
 // Metatdata
 $klein->respond('GET', INDEX_PATH, function(){
@@ -50,32 +50,43 @@ $klein->respond('POST', INDEX_PATH . 'api/StatSocial/getReportStatus', function(
     echo $report->status();
     exit(200);
 });
+// MReportCreate
 // api/StatSocial/createTwitterFollowerReport
 $klein->respond('POST', INDEX_PATH . 'api/StatSocial/createTwitterFollowerReport', function(){
     $report = new MReportCreate(['apiKey', 'twitterId', 'twitterHandle', 'filter']);
     echo $report->twitterFollower();
     exit(200);
 });
-// api/StatSocial/createCustomReport
-/*
-$klein->respond('POST', INDEX_PATH . 'api/StatSocial/createCustomReport', function(){
+// api/StatSocial/generateCustomReport
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/generateCustomReport', function(){
     $report = new MReportCreate(['apiKey', 'reportName']);
-    echo $report->custom();
+    echo $report->customGenerate();
     exit(200);
 });
-*/
+// api/StatSocial/insertCustomReport
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/insertCustomReport', function(){
+    $report = new MReportCreate(['apiKey', 'uploadHash', 'ids']);
+    echo $report->customInsert();
+    exit(200);
+});
+// api/StatSocial/createCustomReport
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/createCustomReport', function(){
+    $report = new MReportCreate(['apiKey', 'uploadHash', 'filter']);
+    echo $report->customCreate();
+    exit(200);
+});
 // api/StatSocial/createTweetReport
 $klein->respond('POST', INDEX_PATH . 'api/StatSocial/createTweetReport', function(){
     $report = new MReportCreate(['apiKey', 'reportName', 'startDate', 'endDate', 'terms', 'filter']);
     echo $report->tweet();
     exit(200);
 });
+// MApplication
 // api/StatSocial/getApplicationStatus
 $klein->respond('POST', INDEX_PATH . 'api/StatSocial/getApplicationStatus', function(){
     $report = new MApplication(['apiKey']);
     echo $report->getStatus();
     exit(200);
 });
-
 $klein->dispatch();
 ?>
