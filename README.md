@@ -4,9 +4,11 @@ Understand and target your social audience.
 * Credentials: apiKey
 
 ## How to get credentials: 
-0. Visit [Stat Social](http://www.statsocial.com/).
-1. Click Request a Demo.
-2. Fill form to get demo API key.
+0. Visit [Stat Social Sign Up page](http://www.statsocial.com/sign-up/).
+1. Register via Twitter account.
+2. In your account go to [Settings / Plan Info](http://account.statsocial.com/#settings/plan).
+3. Copy API Key and use it as credential.
+4. If you use all report tokens, you can contact with support.
 
 ## StatSocial.getReports
 Output is ordered by Demographic and followed by Affinity information. For each data point the following metrics are provided value, count, mean, percentile, multiplicity and average. For Geographic, and Demographic data points an additional statistical_info metric will be present with information regarding statistical relevance.
