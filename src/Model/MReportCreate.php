@@ -2,13 +2,15 @@
 
 namespace Model;
 use Core\BaseModel;
-if ( ! defined( 'RAPID_IN' ) ) exit( 'No direct script access allowed' );
+
+if (!defined('RAPID_IN')) exit('No direct script access allowed');
 
 /**
- * Get Reports Model
+ * MReportCreate Model
  */
 class MReportCreate extends BaseModel
 {
+    // Process route: api/StatSocial/createTwitterFollowerReport/
     public function twitterFollower()
     {
         // Validate Required and JSON fields
@@ -25,9 +27,11 @@ class MReportCreate extends BaseModel
         ]);
         // Make request
         $result = $this->httpRequest('http://api.statsocial.com:80/api/reports/twitter/create/', $sendingParam);
+
         return json_encode($result);
     }
 
+    // Process route: api/StatSocial/generateCustomReport/
     public function customGenerate()
     {
         // Validate Required and JSON fields
@@ -46,6 +50,7 @@ class MReportCreate extends BaseModel
         return json_encode($result);
     }
 
+    // Process route: api/StatSocial/insertCustomReport/
     public function customInsert()
     {
         // Validate Required and JSON fields
@@ -65,6 +70,7 @@ class MReportCreate extends BaseModel
         return json_encode($result);
     }
 
+    // Process route: api/StatSocial/createCustomReport/
     public function customCreate()
     {
         // Validate Required and JSON fields
@@ -84,6 +90,7 @@ class MReportCreate extends BaseModel
         return json_encode($result);
     }
 
+    // Process route: api/StatSocial/createTweetReport/
     public function tweet()
     {
         // Validate Required and JSON fields

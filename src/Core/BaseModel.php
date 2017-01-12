@@ -1,6 +1,7 @@
 <?php
 
 namespace Core;
+
 if ( ! defined( 'RAPID_IN' ) ) exit( 'No direct script access allowed' );
 
 /**
@@ -17,10 +18,10 @@ class BaseModel
         $this->http = new \GuzzleHttp\Client($httpConfig);
     }
 
+    // Process route: api/StatSocial/
     public function showMetadata()
     {
-        include_once APP_PATH . '/../src/metadata/metadata.json';
-        exit();
+        include_once dirname(__DIR__) . '/metadata/metadata.json';
     }
 
     public function checkPram($paramList)
@@ -39,9 +40,11 @@ class BaseModel
                 exit(200);
             }
             $jsonParam = $requestBody['args'];
+            $param = [];
             foreach($paramList as $oneParam){
                 $param[$oneParam] = (isset($jsonParam[$oneParam]))?$jsonParam[$oneParam]:false;
             }
+
             return $param;
         }else{
             return [];
@@ -82,10 +85,11 @@ class BaseModel
     {
         $result = [];
         foreach($requiredPram as $oneParam){
-            if($this->param[$oneParam] == false){
+            if(!isset($this->param[$oneParam]) || $this->param[$oneParam] == false){
                 array_push($result, $oneParam);
             }
         }
+
         return $result;
     }
 
@@ -94,7 +98,7 @@ class BaseModel
         $result = [];
         foreach($jsonParams as $oneParam){
             $paramVal = $this->param[$oneParam];
-            if($paramVal != false){
+            if(!isset($this->param[$oneParam]) || $paramVal != false){
                 if(!is_array($paramVal)) {
                     array_push($result, $oneParam);
                 }
@@ -170,6 +174,7 @@ class BaseModel
             $result['contextWrites']['to']['status_code'] = 'INTERNAL_PACKAGE_ERROR';
             $result['contextWrites']['to']['status_msg'] = 'Something went wrong inside the package.';
         }
+
         return $result;
     }
 

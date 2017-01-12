@@ -2,13 +2,15 @@
 
 namespace Model;
 use Core\BaseModel;
-if ( ! defined( 'RAPID_IN' ) ) exit( 'No direct script access allowed' );
+
+if (!defined('RAPID_IN')) exit('No direct script access allowed');
 
 /**
- * Get Reports Model
+ * MApplication Model
  */
 class MApplication extends BaseModel
 {
+    // Process route: api/StatSocial/getApplicationStatus/
     public function getStatus()
     {
         // Validate Required and JSON fields
@@ -16,10 +18,10 @@ class MApplication extends BaseModel
         if($response){
             return $response;
         }
+        // Prepare parameter for sending
         $sendingParam = $this->prepareParam([
             'apiKey' => 'key'
         ]);
-
         // Make request
         $result = $this->httpRequest('http://api.statsocial.com:80/api/applications/status/', $sendingParam, 'GET');
 
