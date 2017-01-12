@@ -14,10 +14,16 @@ class MReportCreate extends BaseModel
     public function twitterFollower()
     {
         // Validate Required and JSON fields
-        $response = $this->validateParam(['apiKey'], ['filter']);
+        $response = $this->validateParam(['apiKey']);
         if($response){
             return $response;
         }
+        // Prepare filter
+        $this->prepareFilter(
+            $this->param['genderFilter'],
+            $this->param['agesFilter'],
+            $this->param['countriesFilter']
+        );
         // Prepare parameter for sending
         $sendingParam = $this->prepareParam([
             'apiKey' => 'key',
@@ -74,10 +80,16 @@ class MReportCreate extends BaseModel
     public function customCreate()
     {
         // Validate Required and JSON fields
-        $response = $this->validateParam(['apiKey', 'uploadHash'], ['filter']);
+        $response = $this->validateParam(['apiKey', 'uploadHash']);
         if($response){
             return $response;
         }
+        // Prepare filter
+        $this->prepareFilter(
+            $this->param['genderFilter'],
+            $this->param['agesFilter'],
+            $this->param['countriesFilter']
+        );
         // Prepare parameter for sending
         $sendingParam = $this->prepareParam([
             'apiKey' => 'key',
@@ -94,10 +106,16 @@ class MReportCreate extends BaseModel
     public function tweet()
     {
         // Validate Required and JSON fields
-        $response = $this->validateParam(['apiKey', 'reportName', 'startDate', 'endDate', 'terms'], ['filter']);
+        $response = $this->validateParam(['apiKey', 'reportName', 'startDate', 'endDate', 'terms']);
         if($response){
             return $response;
         }
+        // Prepare filter
+        $this->prepareFilter(
+            $this->param['genderFilter'],
+            $this->param['agesFilter'],
+            $this->param['countriesFilter']
+        );
         // Prepare parameter for sending
         $sendingParam = $this->prepareParam([
             'apiKey' => 'key',

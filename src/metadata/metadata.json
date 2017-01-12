@@ -139,9 +139,21 @@
           "required": false
         },
         {
-          "name": "filter",
-          "type": "JSON",
-          "info": "JSON Object. Filtering options to be used when creating a filtered report. The options must be in JSON form.",
+          "name": "genderFilter",
+          "type": "Array",
+          "info": "Filtering by gender options to be used when creating a filtered report. Format [\"male\"].",
+          "required": false
+        },
+        {
+          "name": "agesFilter",
+          "type": "Array",
+          "info": "Filtering by ages options to be used when creating a filtered report. Format [\"18-24\"].",
+          "required": false
+        },
+        {
+          "name": "countriesFilter",
+          "type": "Array",
+          "info": "Filtering by countries options to be used when creating a filtered report. Format [\"usa\"].",
           "required": false
         }
       ],
@@ -235,9 +247,21 @@
           "required": true
         },
         {
-          "name": "filter",
-          "type": "JSON",
-          "info": "JSON Object. Filtering options to be used when creating a filtered report. The options must be in JSON form.",
+          "name": "genderFilter",
+          "type": "Array",
+          "info": "Filtering by gender options to be used when creating a filtered report. Format [\"male\"].",
+          "required": false
+        },
+        {
+          "name": "agesFilter",
+          "type": "Array",
+          "info": "Filtering by ages options to be used when creating a filtered report. Format [\"18-24\"].",
+          "required": false
+        },
+        {
+          "name": "countriesFilter",
+          "type": "Array",
+          "info": "Filtering by countries options to be used when creating a filtered report. Format [\"usa\"].",
           "required": false
         }
       ],
@@ -287,9 +311,21 @@
           "required": true
         },
         {
-          "name": "filter",
-          "type": "JSON",
-          "info": "JSON Object. Filtering options to be used when creating a filtered report. The options must be in JSON form.",
+          "name": "genderFilter",
+          "type": "Array",
+          "info": "Filtering by gender options to be used when creating a filtered report. Format [\"male\"].",
+          "required": false
+        },
+        {
+          "name": "agesFilter",
+          "type": "Array",
+          "info": "Filtering by ages options to be used when creating a filtered report. Format [\"18-24\"].",
+          "required": false
+        },
+        {
+          "name": "countriesFilter",
+          "type": "Array",
+          "info": "Filtering by countries options to be used when creating a filtered report. Format [\"usa\"].",
           "required": false
         }
       ],

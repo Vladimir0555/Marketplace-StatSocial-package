@@ -108,6 +108,25 @@ class BaseModel
         return $result;
     }
 
+    protected function prepareFilter($gender, $ages, $countries)
+    {
+        $filter = [];
+        if ($gender && is_array($gender) && count($gender) > 0) {
+            $filter['gender'] = $gender;
+        }
+        if ($ages && is_array($ages) && count($ages) > 0) {
+            $filter['ages'] = $ages;
+        }
+        if ($countries && is_array($countries) && count($countries) > 0) {
+            $filter['countries'] = $countries;
+        }
+        if (count($filter) > 0) {
+            $this->param['filter'] = json_encode($filter);
+        }else{
+            $this->param['filter'] = false;
+        }
+    }
+
     protected function prepareParam($dictionary = [])
     {
         $result = [];

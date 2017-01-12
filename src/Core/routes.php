@@ -34,7 +34,7 @@ $klein->respond('POST', INDEX_PATH . 'api/StatSocial/getReportStatus/?', functio
 // MReportCreate
 // api/StatSocial/createTwitterFollowerReport/
 $klein->respond('POST', INDEX_PATH . 'api/StatSocial/createTwitterFollowerReport/?', function(){
-    $report = new MReportCreate(['apiKey', 'twitterId', 'twitterHandle', 'filter']);
+    $report = new MReportCreate(['apiKey', 'twitterId', 'twitterHandle', 'genderFilter', 'agesFilter', 'countriesFilter']);
     echo $report->twitterFollower();
 });
 // api/StatSocial/generateCustomReport/
@@ -49,12 +49,12 @@ $klein->respond('POST', INDEX_PATH . 'api/StatSocial/insertCustomReport/?', func
 });
 // api/StatSocial/createCustomReport/
 $klein->respond('POST', INDEX_PATH . 'api/StatSocial/createCustomReport/?', function(){
-    $report = new MReportCreate(['apiKey', 'uploadHash', 'filter']);
+    $report = new MReportCreate(['apiKey', 'uploadHash', 'genderFilter', 'agesFilter', 'countriesFilter']);
     echo $report->customCreate();
 });
 // api/StatSocial/createTweetReport/
 $klein->respond('POST', INDEX_PATH . 'api/StatSocial/createTweetReport/?', function(){
-    $report = new MReportCreate(['apiKey', 'reportName', 'startDate', 'endDate', 'terms', 'filter']);
+    $report = new MReportCreate(['apiKey', 'reportName', 'startDate', 'endDate', 'terms', 'genderFilter', 'agesFilter', 'countriesFilter']);
     echo $report->tweet();
 });
 // MApplication
