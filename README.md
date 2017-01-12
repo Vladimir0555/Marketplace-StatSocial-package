@@ -103,7 +103,10 @@ This report details the audience of the users who have tweeted content that matc
 | terms     | String     | String or Array of JSON Objects. If you are tracking a single term, then the keyword itself is suffice otherwise, tracking multiple terms must be in JSON form. Which results in filtering tweets containing 'http://google.com' OR '#test' AND 'test2'. (NOTE) Make sure to URL encode the terms value for multiple terms.
 | filter    | JSON       | JSON Object. Filtering options to be used when creating a filtered report. The options must be in JSON form.
 
-#### terms JSON format
+#### terms if String format
+test2
+
+#### terms if JSON format
 ```json
 [
     {
