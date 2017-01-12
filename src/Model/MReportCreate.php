@@ -94,7 +94,7 @@ class MReportCreate extends BaseModel
     public function tweet()
     {
         // Validate Required and JSON fields
-        $response = $this->validateParam(['apiKey', 'reportName', 'startDate', 'endDate', 'terms'], ['terms', 'filter']);
+        $response = $this->validateParam(['apiKey', 'reportName', 'startDate', 'endDate', 'terms'], ['filter']);
         if($response){
             return $response;
         }
