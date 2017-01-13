@@ -27,7 +27,7 @@ class MReportCreate extends BaseModel
         // Prepare parameter for sending
         $sendingParam = $this->prepareParam([
             'apiKey' => 'key',
-            'twitterHandle' => 'twitter_handle',
+            'twitterId' => 'twitter_id',
             'filter' => 'filter'
         ]);
         // Make request
