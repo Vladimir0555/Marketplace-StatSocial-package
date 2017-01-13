@@ -32,10 +32,16 @@ $klein->respond('POST', INDEX_PATH . 'api/StatSocial/getReportStatus/?', functio
     echo $report->status();
 });
 // MReportCreate
-// api/StatSocial/createTwitterFollowerReport/
-$klein->respond('POST', INDEX_PATH . 'api/StatSocial/createTwitterFollowerReport/?', function(){
-    $report = new MReportCreate(['apiKey', 'twitterId', 'twitterHandle', 'genderFilter', 'agesFilter', 'countriesFilter']);
-    echo $report->twitterFollower();
+// api/StatSocial/createFollowerReportByTwitterId/
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/createFollowerReportByTwitterId/?', function(){
+    $report = new MReportCreate(['apiKey', 'twitterId', 'genderFilter', 'agesFilter', 'countriesFilter']);
+    echo $report->twitterFollowerId();
+});
+// MReportCreate
+// api/StatSocial/createFollowerReportByTwitterHandle/
+$klein->respond('POST', INDEX_PATH . 'api/StatSocial/createFollowerReportByTwitterHandle/?', function(){
+    $report = new MReportCreate(['apiKey', 'twitterHandle', 'genderFilter', 'agesFilter', 'countriesFilter']);
+    echo $report->twitterFollowerHandle();
 });
 // api/StatSocial/generateCustomReport/
 $klein->respond('POST', INDEX_PATH . 'api/StatSocial/generateCustomReport/?', function(){

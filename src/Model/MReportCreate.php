@@ -10,11 +10,11 @@ if (!defined('RAPID_IN')) exit('No direct script access allowed');
  */
 class MReportCreate extends BaseModel
 {
-    // Process route: api/StatSocial/createTwitterFollowerReport/
-    public function twitterFollower()
+    // Process route: api/StatSocial/createFollowerReportByTwitterId/
+    public function twitterFollowerId()
     {
         // Validate Required and JSON fields
-        $response = $this->validateParam(['apiKey']);
+        $response = $this->validateParam(['apiKey', 'twitterId']);
         if($response){
             return $response;
         }
@@ -27,7 +27,32 @@ class MReportCreate extends BaseModel
         // Prepare parameter for sending
         $sendingParam = $this->prepareParam([
             'apiKey' => 'key',
-            'twitterId' => 'twitter_id',
+            'twitterHandle' => 'twitter_handle',
+            'filter' => 'filter'
+        ]);
+        // Make request
+        $result = $this->httpRequest('http://api.statsocial.com:80/api/reports/twitter/create/', $sendingParam);
+
+        return json_encode($result);
+    }
+
+    // Process route: api/StatSocial/createFollowerReportByTwitterHandle/
+    public function twitterFollowerHandle()
+    {
+        // Validate Required and JSON fields
+        $response = $this->validateParam(['apiKey', 'twitterHandle']);
+        if($response){
+            return $response;
+        }
+        // Prepare filter
+        $this->prepareFilter(
+            $this->param['genderFilter'],
+            $this->param['agesFilter'],
+            $this->param['countriesFilter']
+        );
+        // Prepare parameter for sending
+        $sendingParam = $this->prepareParam([
+            'apiKey' => 'key',
             'twitterHandle' => 'twitter_handle',
             'filter' => 'filter'
         ]);

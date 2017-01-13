@@ -117,7 +117,7 @@
       ]
     },
     {
-      "name": "createTwitterFollowerReport",
+      "name": "createFollowerReportByTwitterId",
       "description": "This report uses the twitter followers as the audience. To create custom or tweet reports other methods must be used. Any report older than two days will be automatically regenerated upon create.",
       "args": [
         {
@@ -129,14 +129,54 @@
         {
           "name": "twitterId",
           "type": "String",
-          "info": "(required if twitter_handle is not supplied) twitter_id must be sent with all client requests. Multiple handles are separated by commas.",
+          "info": "twitter_id must be sent with all client requests. Multiple handles are separated by commas.",
+          "required": true
+        },
+        {
+          "name": "genderFilter",
+          "type": "Array",
+          "info": "Filtering by gender options to be used when creating a filtered report. Format [\"male\"].",
           "required": false
+        },
+        {
+          "name": "agesFilter",
+          "type": "Array",
+          "info": "Filtering by ages options to be used when creating a filtered report. Format [\"18-24\"].",
+          "required": false
+        },
+        {
+          "name": "countriesFilter",
+          "type": "Array",
+          "info": "Filtering by countries options to be used when creating a filtered report. Format [\"usa\"].",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createFollowerReportByTwitterHandle",
+      "description": "This report uses the twitter followers as the audience. To create custom or tweet reports other methods must be used. Any report older than two days will be automatically regenerated upon create.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key.",
+          "required": true
         },
         {
           "name": "twitterHandle",
           "type": "String",
-          "info": "(required if twitter_id is not supplied) twitter_handle must be sent with all client requests. Multiple ids are separated by commas.",
-          "required": false
+          "info": "twitter_handle must be sent with all client requests. Multiple ids are separated by commas.",
+          "required": true
         },
         {
           "name": "genderFilter",
